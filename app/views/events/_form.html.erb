@@ -1,0 +1,62 @@
+<%= form_with(model: event, local: true) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field datesize center form-group">
+    <%= form.label :date %>
+    <%= form.date_select :date, id: :event_date, class: "form-control" %>
+
+</div>
+  <div class="form-horizontal center">
+  <div class="field form-group">
+    <%= form.label :start %>
+    <%= form.time_select :start, id: :event_start, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :end %>
+    <%= form.time_select :end, id: :event_end, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :gallery_id %>
+    <%= form.text_field :gallery_id, id: :event_gallery_id, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :artist_id %>
+    <%= form.text_field :artist_id, id: :event_artist_id, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :art_id %>
+    <%= form.text_field :art_id, id: :event_art_id, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :email, :value => @user.email %>
+  </div>
+
+  <div class="field">
+  <%= form.hidden_field :password, :value => @user.password %>
+  </div>
+  
+  <div class="field">
+  <%= form.hidden_field :user_id, :value => @user.id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+</div>
+<% end %>
